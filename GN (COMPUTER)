@@ -1,0 +1,28 @@
+def computer_guess():
+    low, high = 1, 10
+    guess = 0
+    feedback = ''
+    attempt = 0
+    while True and low <= high:
+        try:
+            guess = (low + high) // 2
+            feedback = input(f"Is {guess} high (>), low (<), or correct (c)?").strip().lower()
+            attempt += 1
+            if feedback not in ['>', '<', 'c']:
+                raise ValueError
+            elif feedback == '>':
+                high = guess - 1
+            elif feedback == '<':
+                low = guess + 1
+            else:
+                print(f"Yay! number {guess} is correct in {attempt} attempt/s")
+                break
+
+            if high < low:
+                print("Oops! The correct number is out of range")
+                break
+
+        except ValueError:
+            print(f"{feedback} is Invalid. Please input 'h', 'l', or 'c' Only")
+
+computer_guess()
